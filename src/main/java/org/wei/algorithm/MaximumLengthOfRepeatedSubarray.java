@@ -16,9 +16,8 @@ public class MaximumLengthOfRepeatedSubarray {
     public static void main(String[] args) {
         int[] A ={1,2,3,2,1};
         int[] B ={3,2,1,4,7};
-        System.out.println(new Solution1().findLength(A,B));
+        System.out.println(new Solution2().findLength(A,B));
     }
-
     /**
      * 暴力破解方法
      * */
@@ -35,6 +34,27 @@ public class MaximumLengthOfRepeatedSubarray {
                         k++;
                     }
                     ans = Math.max(ans,k);
+                }
+            }
+            return ans;
+        }
+
+    }
+
+    /**
+     * 暴力破解方法
+     * */
+    static  class Solution2 {
+        public int findLength(int[] A, int[] B) {
+            if(A.length==0||B.length==0){
+                return 0;
+            }
+            int[][] dp = new int[A.length+1][B.length+1];
+            int ans = 0;
+            for (int i=1;i<=A.length;i++){
+                for (int j=1;j<=B.length;j++){
+                    dp[i][j] = A[i-1]==B[j-1]?dp[i-1][j-1]+1:0;
+                    ans = Math.max(ans,dp[i][j]);
                 }
             }
             return ans;
