@@ -35,6 +35,9 @@ public class DungeonGame {
 
     }
 
+    /**
+     * dp 模式： dp[i][j]dp[i][j] 表示从坐标 (i,j)(i,j) 到终点所需的最小初始值
+     * */
    static   class Solution {
         public int calculateMinimumHP(int[][] dungeon) {
             int n = dungeon.length, m = dungeon[0].length;
