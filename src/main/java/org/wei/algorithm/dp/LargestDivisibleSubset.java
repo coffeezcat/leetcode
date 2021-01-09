@@ -1,5 +1,7 @@
 package org.wei.algorithm.dp;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -23,7 +25,29 @@ public class LargestDivisibleSubset {
 
    static class Solution {
         public List<Integer> largestDivisibleSubset(int[] nums) {
+            List<ArrayList> result = new ArrayList<ArrayList>();
+            for (int num:nums){
+                result.add(new ArrayList());
+            }
+            Arrays.sort(nums);
 
+            for (int i = 0; i <nums.length ; i++) {
+                List<Integer> maxSubList = new ArrayList<Integer>();
+                for (int j = 0; j <i ; j++) {
+                    if(nums[i]%nums[j]==0&&maxSubList.size()<result.get(i).size()){
+                        maxSubList= result.get(i);
+                    }
+                }
+                result.get(i).addAll(maxSubList);
+                result.get(i).add(nums[i]);
+            }
+            List<Integer> ret = new ArrayList<Integer>();
+            for (int i = 0; i < nums.length ; i++) {
+                if(result.get(i).size()>ret.size()){
+                    ret = result.get(i);
+                }
+            }
+            return ret;
         }
     }
 }
