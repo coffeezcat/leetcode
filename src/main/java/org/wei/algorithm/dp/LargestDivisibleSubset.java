@@ -28,6 +28,11 @@ public class LargestDivisibleSubset {
         int[] nums = {1,2,3};
         System.out.println(new Solution().largestDivisibleSubset(nums));
     }
+            List<ArrayList> result = new ArrayList<ArrayList>();
+            for (int num:nums){
+                result.add(new ArrayList());
+            }
+            Arrays.sort(nums);
 
       static   class Solution {
            public List<Integer> largestDivisibleSubset(int[] nums) {
